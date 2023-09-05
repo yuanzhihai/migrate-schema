@@ -18,7 +18,7 @@ class Schema
     }
 
     /**
-     * 创建蓝图实例
+     * 创建数据表
      * @param AdapterInterface $adapter
      * @param string $name 表名
      * @param callable $call 回调
@@ -69,7 +69,7 @@ class Schema
 
 
     /**
-     * 编辑蓝图实例
+     * 编辑数据表
      * @param AdapterInterface $adapter
      * @param string $name 表名
      * @param callable $call 回调
@@ -111,5 +111,34 @@ class Schema
         }
 
         $table->save();
+    }
+
+    /**
+     * 重命名数据表
+     * @param AdapterInterface $adapter
+     * @param $form 表名
+     * @param $to 新表名
+     * @param array $options
+     * @return void
+     */
+    public static function rename(AdapterInterface $adapter, $form, $to, array $options = [])
+    {
+        $table = new Table($form, $options, $adapter);
+
+        $table->rename($to);
+    }
+
+    /**
+     * 删除数据表
+     * @param AdapterInterface $adapter
+     * @param $name 表名
+     * @param array $options 表选项
+     * @return void
+     */
+    public static function drop(AdapterInterface $adapter, $name, array $options = [])
+    {
+        $table = new Table($name, $options, $adapter);
+
+        $table->drop();
     }
 }

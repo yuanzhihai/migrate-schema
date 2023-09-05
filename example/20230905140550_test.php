@@ -32,6 +32,6 @@ class Test extends Migrator
 
     public function down()
     {
-        $this->dropTable('test');
+        Schema::drop($this->getAdapter(),'test');
     }
 }
