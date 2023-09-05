@@ -116,8 +116,8 @@ class Schema
     /**
      * 重命名数据表
      * @param AdapterInterface $adapter
-     * @param $form 表名
-     * @param $to 新表名
+     * @param string $form 表名
+     * @param string $to 新表名
      * @param array $options
      * @return void
      */
@@ -131,7 +131,7 @@ class Schema
     /**
      * 删除数据表
      * @param AdapterInterface $adapter
-     * @param $name 表名
+     * @param string $name 表名
      * @param array $options 表选项
      * @return void
      */
