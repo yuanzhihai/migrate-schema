@@ -128,7 +128,7 @@ class Blueprint
         } else if (is_array($columns)) {
             $this->index[] = [
                 'columns' => $columns,
-                'name'    => $name,
+                'name'    => $name?: $this->actionName,
                 'unique'  => true,
             ];
         } else {
@@ -401,7 +401,7 @@ class Blueprint
      * @param bool $unsigned
      * @return $this
      */
-    public function integer($name, $autoIncrement = false, $unsigned = false)
+    public function integer(string $name, bool $autoIncrement = false, bool $unsigned = false)
     {
         $this->columns[$name] = [
             'type'     => MysqlAdapter::PHINX_TYPE_INTEGER,
