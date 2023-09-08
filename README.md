@@ -26,10 +26,10 @@ Schema::table($this->getAdapter(), '表名', function (Blueprint $table) {
 | $table->date('created_at');              | 相当于 DATE                                   |
 | $table->dateTime('created_at');          | 相当于 DATETIME                               |
 | $table->decimal('amount', 8, 2);         | 相当于带有精度与基数 DECIMAL                         |
-|$table->double('amount', 8, 2); | 相当于带有精度与基数 DOUBLE (think-migration 3.x)    |
-|$table->float('amount', 8, 2);| 相当于带有精度与基数 FLOAT   (think-migration 3.x)   |
+|$table->double('amount', 8, 2); | 相当于带有精度与基数 DOUBLE (think-migration 3.1.x)  |
+|$table->float('amount', 8, 2);| 相当于带有精度与基数 FLOAT   (think-migration 3.1.x) |
 | $table->enum('level', ['easy', 'hard']); | 相当于 ENUM                                   |
-| $table->set('level', ['easy', 'hard']);  | 相当于 SET     (think-migration 3.x)                               |
+| $table->set('level', ['easy', 'hard']);  | 相当于 SET     (think-migration 3.1.x)        |
 | $table->geometry('positions');           | 相当于 GEOMETRY                               |
 | $table->integer('votes');                | 相当于 INTEGER                                |
 | $table->json('options');                 | 相当于 JSON                                   |
