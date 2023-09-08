@@ -3,6 +3,7 @@
 namespace yzh52521\migrate;
 
 use Phinx\Db\Adapter\MysqlAdapter;
+
 class Blueprint
 {
     /**
@@ -128,7 +129,7 @@ class Blueprint
         } else if (is_array($columns)) {
             $this->index[] = [
                 'columns' => $columns,
-                'name'    => $name?: $this->actionName,
+                'name'    => $name ?: $this->actionName,
                 'unique'  => true,
             ];
         } else {
@@ -363,6 +364,49 @@ class Blueprint
     }
 
     /**
+     * 相当于带有精度与基数 DOUBLE
+     * @param  string $name
+     * @param int $length 整数精度
+     * @param int $places 小数精度
+     * @param bool $unsigned 是否无符号
+     * @return $this
+     */
+    public function double($name, $length = 11, $places = 2, $unsigned = false)
+    {
+        $this->columns[$name] = [
+            'type'      => MysqlAdapter::PHINX_TYPE_DOUBLE,
+            'precision' => $length,
+            'scale'     => $places,
+            'signed'    => !$unsigned,
+        ];
+        $this->actionName     = $name;
+
+        return $this;
+    }
+
+    /**
+     * 相当于带有精度与基数 FLOAT
+     * @param string $name
+     * @param int $length 整数精度
+     * @param int $places 小数精度
+     * @param bool $unsigned 是否无符号
+     * @return $this
+     */
+    public function float($name, $length = 11, $places = 2, $unsigned = false)
+    {
+        $this->columns[$name] = [
+            'type'      => MysqlAdapter::PHINX_TYPE_FLOAT,
+            'precision' => $length,
+            'scale'     => $places,
+            'signed'    => !$unsigned,
+        ];
+        $this->actionName     = $name;
+
+        return $this;
+    }
+
+
+    /**
      * 相当于 ENUM
      * @param string $name
      * @param array $values
@@ -378,6 +422,24 @@ class Blueprint
 
         return $this;
     }
+
+    /**
+     * 相当于 SET
+     * @param string $name
+     * @param array $values
+     * @return $this
+     */
+    public function set($name, array $values)
+    {
+        $this->columns[$name] = [
+            'type'   => MysqlAdapter::PHINX_TYPE_SET,
+            'values' => $values,
+        ];
+        $this->actionName     = $name;
+
+        return $this;
+    }
+
 
     /**
      * 相当于 GEOMETRY
